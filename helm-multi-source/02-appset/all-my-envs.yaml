@@ -62,3 +62,17 @@ spec:
         - repoURL: 'https://github.com/guythomasdavis/gitops-cert-level-3-examples.git'
           targetRevision: HEAD
           ref: values
+
+      # Destination cluster and namespace to deploy the application
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{.env}}'
+
+      # Sync policy
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true  
+        automated: 
+          prune: true 
+          selfHeal: true 
+      
